@@ -1,25 +1,6 @@
 services:
 
   # ==========================================================
-  # Workspace para Visual Studio Code
-  # ==========================================================
-
-  workspace:
-
-    build:
-      context: .
-      dockerfile: .devcontainer/Dockerfile
-    container_name: postgres-dev-workspace
-    volumes:
-      - .:/workspace:cached
-    working_dir: /workspace
-    command: sleep infinity
-    depends_on:
-      postgres_db:
-        condition: service_healthy
-    networks:
-      - postgres_network
-  # ==========================================================
   # PostgreSQL
   # ==========================================================
 
@@ -46,6 +27,7 @@ services:
     restart: unless-stopped
     networks:
       - postgres_network
+
   # ==========================================================
   # pgAdmin
   # ==========================================================
@@ -68,9 +50,11 @@ services:
     restart: unless-stopped
     networks:
       - postgres_network
+
 volumes:
   postgres_data:
   pgadmin_data:
+
 networks:
   postgres_network:
     driver: bridge
