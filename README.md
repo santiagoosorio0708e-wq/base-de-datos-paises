@@ -49,6 +49,4 @@ ORDER BY continent ASC;
 
 El resultado de los continentes debe verse de la siguiente manera:
 
-![Resultado de la Consulta](./resultado.png)
-
-*(Asegúrate de guardar tu captura de pantalla como `resultado.png` en la raíz del repositorio para que se visualice aquí).*
+![Resultado de la Consulta](./img/captura1.png)
