@@ -36,7 +36,7 @@ docker-compose up -d
 
 Accede a pgAdmin en `http://localhost:8082` y registra el servidor usando `postgres-db-paises` como Host en el puerto `5432`.
 
-## 📊 Resultado Esperado
+## 📊 Resultado Esperado (pgAdmin)
 
 Al ejecutar la consulta requerida para poblar la tabla `continent`:
 
@@ -47,6 +47,20 @@ FROM country
 ORDER BY continent ASC;
 ```
 
-El resultado de los continentes debe verse de la siguiente manera:
+El resultado de los continentes debe verse de la siguiente manera en pgAdmin:
 
 ![Resultado de la Consulta](./img/captura1.png)
+
+---
+
+## 💻 Uso directo desde la Terminal
+
+Si prefieres trabajar como un profesional desde la terminal sin interfaz gráfica, el proyecto está completamente preparado para soportarlo. Para conectarte directamente a tu base de datos mediante la línea de comandos interactiva de PostgreSQL (`psql`), ejecuta:
+
+```bash
+docker exec -it postgres-db-paises psql -U bkseducate -d bkddb
+```
+
+Una vez que estés dentro (verás el *prompt* `bkddb=#`), puedes escribir y ejecutar exactamente las mismas consultas en SQL puro. Al consultar los datos de los continentes, el resultado en la consola se verá así:
+
+![Resultado en Terminal](./img/captura2.png)
