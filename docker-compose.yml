@@ -4,9 +4,9 @@ services:
   # PostgreSQL
   # ==========================================================
 
-  postgres_db:
+  postgres_db_paises:
     image: postgres:16
-    container_name: postgres_db
+    container_name: postgres_db_paises
     env_file:
       - .env
     environment:
@@ -16,7 +16,7 @@ services:
     ports:
       - "${POSTGRES_PORT}:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data_paises:/var/lib/postgresql/data
       - ./init:/docker-entrypoint-initdb.d:ro
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]
@@ -26,17 +26,17 @@ services:
       start_period: 10s
     restart: unless-stopped
     networks:
-      - postgres_network
+      - postgres_network_paises
 
   # ==========================================================
   # pgAdmin
   # ==========================================================
 
-  pgadmin_web:
+  pgadmin_web_paises:
     image: dpage/pgadmin4:latest
-    container_name: pgadmin_web
+    container_name: pgadmin_web_paises
     depends_on:
-      postgres_db:
+      postgres_db_paises:
         condition: service_healthy
     env_file:
       - .env
@@ -46,15 +46,15 @@ services:
     ports:
       - "${PGADMIN_PORT}:80"
     volumes:
-      - pgadmin_data:/var/lib/pgadmin
+      - pgadmin_data_paises:/var/lib/pgadmin
     restart: unless-stopped
     networks:
-      - postgres_network
+      - postgres_network_paises
 
 volumes:
-  postgres_data:
-  pgadmin_data:
+  postgres_data_paises:
+  pgadmin_data_paises:
 
 networks:
-  postgres_network:
+  postgres_network_paises:
     driver: bridge
