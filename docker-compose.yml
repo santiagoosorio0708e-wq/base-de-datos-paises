@@ -4,9 +4,9 @@ services:
   # PostgreSQL
   # ==========================================================
 
-  postgres_db_paises:
+  postgres-db-paises:
     image: postgres:16
-    container_name: postgres_db_paises
+    container_name: postgres-db-paises
     env_file:
       - .env
     environment:
@@ -32,11 +32,11 @@ services:
   # pgAdmin
   # ==========================================================
 
-  pgadmin_web_paises:
+  pgadmin-web-paises:
     image: dpage/pgadmin4:latest
-    container_name: pgadmin_web_paises
+    container_name: pgadmin-web-paises
     depends_on:
-      postgres_db_paises:
+      postgres-db-paises:
         condition: service_healthy
     env_file:
       - .env
